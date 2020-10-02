@@ -1,0 +1,196 @@
+parameters:
+    level: 7
+    paths:
+        - %rootDir%/../../../src
+    polluteScopeWithLoopInitialAssignments: false
+    polluteScopeWithAlwaysIterableForeach: false
+    checkAlwaysTrueCheckTypeFunctionCall: false
+    checkAlwaysTrueInstanceof: true
+    checkAlwaysTrueStrictComparison: true
+    checkExplicitMixedMissingReturn: true
+    checkFunctionNameCase: true
+    checkMissingClosureNativeReturnTypehintRule: true
+    reportMaybesInMethodSignatures: true
+    reportStaticMethodSignatures: true
+
+    exceptionRules:
+        reportUnusedCatchesOfUncheckedExceptions: false
+        reportUnusedCheckedThrowsInSubtypes: false
+        reportCheckedThrowsInGlobalScope: true
+        ignoreDescriptiveUncheckedExceptions: false
+        checkedExceptions: []
+        uncheckedExceptions: []
+        methodThrowTypeDeclarations: []
+        functionThrowTypeDeclarations: []
+        methodWhitelist: []
+
+parametersSchema:
+    exceptionRules: structure([
+        reportUnusedCatchesOfUncheckedExceptions: bool()
+        reportUnusedCheckedThrowsInSubtypes: bool()
+        reportCheckedThrowsInGlobalScope: bool()
+        ignoreDescriptiveUncheckedExceptions: bool()
+        checkedExceptions: listOf(string())
+        uncheckedExceptions: listOf(string())
+        methodThrowTypeDeclarations: arrayOf(arrayOf(listOf(string())))
+        functionThrowTypeDeclarations: arrayOf(listOf(string()))
+        methodWhitelist: arrayOf(string())
+    ])
+
+rules:
+    - Ergebnis\PHPStan\Rules\Expressions\NoEmptyRule
+    - Ergebnis\PHPStan\Rules\Expressions\NoErrorSuppressionRule
+    - Ergebnis\PHPStan\Rules\Expressions\NoEvalRule
+    - Ergebnis\PHPStan\Rules\Files\DeclareStrictTypesRule
+    - Ergebnis\PHPStan\Rules\Methods\PrivateInFinalClassRule
+
+    - PHPStan\Rules\BooleansInConditions\BooleanInBooleanAndRule
+    - PHPStan\Rules\BooleansInConditions\BooleanInBooleanNotRule
+    - PHPStan\Rules\BooleansInConditions\BooleanInBooleanOrRule
+    - PHPStan\Rules\BooleansInConditions\BooleanInElseIfConditionRule
+    - PHPStan\Rules\BooleansInConditions\BooleanInIfConditionRule
+    - PHPStan\Rules\BooleansInConditions\BooleanInTernaryOperatorRule
+    - PHPStan\Rules\Classes\RequireParentConstructCallRule
+    - PHPStan\Rules\DisallowedConstructs\DisallowedEmptyRule
+    - PHPStan\Rules\DisallowedConstructs\DisallowedImplicitArrayCreationRule
+    - PHPStan\Rules\DisallowedConstructs\DisallowedShortTernaryRule
+    - PHPStan\Rules\ForeachLoop\OverwriteVariablesWithForeachRule
+    - PHPStan\Rules\Methods\WrongCaseOfInheritedMethodRule
+    - PHPStan\Rules\Operators\OperandInArithmeticPostDecrementRule
+    - PHPStan\Rules\Operators\OperandInArithmeticPostIncrementRule
+    - PHPStan\Rules\Operators\OperandInArithmeticPreDecrementRule
+    - PHPStan\Rules\Operators\OperandInArithmeticPreIncrementRule
+    - PHPStan\Rules\Operators\OperandsInArithmeticAdditionRule
+    - PHPStan\Rules\Operators\OperandsInArithmeticDivisionRule
+    - PHPStan\Rules\Operators\OperandsInArithmeticExponentiationRule
+    - PHPStan\Rules\Operators\OperandsInArithmeticModuloRule
+    - PHPStan\Rules\Operators\OperandsInArithmeticMultiplicationRule
+    - PHPStan\Rules\Operators\OperandsInArithmeticSubtractionRule
+    - PHPStan\Rules\StrictCalls\DynamicCallOnStaticMethodsRule
+    - PHPStan\Rules\StrictCalls\StrictFunctionCallsRule
+    - PHPStan\Rules\SwitchConditions\MatchingTypeInSwitchCaseConditionRule
+    - PHPStan\Rules\VariableVariables\VariableMethodCallRule
+    - PHPStan\Rules\VariableVariables\VariableStaticMethodCallRule
+    - PHPStan\Rules\VariableVariables\VariableStaticPropertyFetchRule
+    - PHPStan\Rules\VariableVariables\VariableVariablesRule
+
+services:
+    -
+        class: TheCodingMachine\PHPStan\Rules\Exceptions\ThrowMustBundlePreviousExceptionRule
+        tags: [phpstan.rules.rule]
+    -
+        class: TheCodingMachine\PHPStan\Rules\Exceptions\DoNotThrowExceptionBaseClassRule
+        tags: [phpstan.rules.rule]
+    -
+        class: TheCodingMachine\PHPStan\Rules\Exceptions\EmptyExceptionRule
+        tags: [phpstan.rules.rule]
+    -
+        class: TheCodingMachine\PHPStan\Rules\Superglobals\NoSuperglobalsRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: PHPStan\Rules\BooleansInConditions\BooleanRuleHelper
+    -
+        class: PHPStan\Rules\Cast\UselessCastRule
+        arguments:
+            treatPhpDocTypesAsCertain: %treatPhpDocTypesAsCertain%
+        tags: [phpstan.rules.rule]
+    -
+        class: PHPStan\Rules\Operators\OperatorRuleHelper
+    -
+        class: PHPStan\Rules\VariableVariables\VariablePropertyFetchRule
+        arguments:
+            universalObjectCratesClasses: %universalObjectCratesClasses%
+        tags: [phpstan.rules.rule]
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\DynamicThrowTypeServiceFactory
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\DynamicThrowTypeService
+        factory: @Pepakriz\PHPStanExceptionRules\DynamicThrowTypeServiceFactory::create
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\ThrowsAnnotationReader
+    -
+        class: Pepakriz\PHPStanExceptionRules\CheckedExceptionService
+        factory: Pepakriz\PHPStanExceptionRules\CheckedExceptionService(%exceptionRules.checkedExceptions%, %exceptionRules.uncheckedExceptions%)
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\DefaultThrowTypeService
+        factory: Pepakriz\PHPStanExceptionRules\DefaultThrowTypeService(%exceptionRules.methodThrowTypeDeclarations%, %exceptionRules.functionThrowTypeDeclarations%)
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\DefaultThrowTypeExtension
+        tags:
+            - exceptionRules.dynamicMethodThrowTypeExtension
+            - exceptionRules.dynamicStaticMethodThrowTypeExtension
+            - exceptionRules.dynamicConstructorThrowTypeExtension
+            - exceptionRules.dynamicFunctionThrowTypeExtension
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\Extension\ReflectionExtension
+        tags:
+            - exceptionRules.dynamicConstructorThrowTypeExtension
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\Extension\DateTimeExtension
+        tags:
+            - exceptionRules.dynamicConstructorThrowTypeExtension
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\Extension\SplFileObjectExtension
+        tags:
+            - exceptionRules.dynamicConstructorThrowTypeExtension
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\Extension\JsonEncodeDecodeExtension
+        tags:
+            - exceptionRules.dynamicFunctionThrowTypeExtension
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\Extension\IntdivExtension
+        tags:
+            - exceptionRules.dynamicFunctionThrowTypeExtension
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\Rules\ThrowsPhpDocRule
+        arguments:
+            reportUnusedCatchesOfUncheckedExceptions: %exceptionRules.reportUnusedCatchesOfUncheckedExceptions%
+            reportUnusedCheckedThrowsInSubtypes: %exceptionRules.reportUnusedCheckedThrowsInSubtypes%
+            reportCheckedThrowsInGlobalScope: %exceptionRules.reportCheckedThrowsInGlobalScope%
+            ignoreDescriptiveUncheckedExceptions: %exceptionRules.ignoreDescriptiveUncheckedExceptions%
+            methodWhitelist: %exceptionRules.methodWhitelist%
+        tags: [phpstan.rules.rule]
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\Rules\ThrowsPhpDocInheritanceRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\Rules\UnreachableCatchRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\Rules\DeadCatchUnionRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: Pepakriz\PHPStanExceptionRules\Rules\UselessThrowsPhpDocRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: SlamPhpStan\UnusedVariableRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: kr0lik\PHPStanRules\VariableInConditionRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: kr0lik\PHPStanRules\PhpdocNotNeededRule
+        tags: [phpstan.rules.rule]
+
+    -
+        class: kr0lik\PHPStanRules\AssignVariableInReturnRule
+        tags: [phpstan.rules.rule]

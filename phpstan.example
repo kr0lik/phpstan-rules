@@ -1,0 +1,3 @@
+includes:
+  - vendor/kr0lik/phpstan-rules/general-extension.neon
+#  - vendor/kr0lik/phpstan-rules/phpunit-extension.neon

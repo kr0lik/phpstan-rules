@@ -1,0 +1,26 @@
+includes:
+  - ./general-extension.neon
+  - ./phpunit-extension.neon
+
+parameters:
+    checkGenericClassInNonGenericObjectType: false
+
+    excludes_analyse:
+        - tests/TestAsset/
+    ignoreErrors:
+        -
+            message: "#Instanceof between PhpParser\\\\Node and PhpParser\\\\Node\\\\Stmt\\\\ClassMethod will always evaluate to false.#"
+            count: 1
+            path: src/PhpdocNotNeededRule.php
+        -
+            message: "#Instanceof between PhpParser\\\\Node and PhpParser\\\\Node\\\\Stmt\\\\Function_ will always evaluate to false.#"
+            count: 1
+            path: src/PhpdocNotNeededRule.php
+        -
+            message: "#Instanceof between PhpParser\\\\Node and PhpParser\\\\Node\\\\Stmt\\\\Trait_ will always evaluate to false.#"
+            count: 1
+            path: src/PhpdocNotNeededRule.php
+        -
+            message: "#Instanceof between PhpParser\\\\Node and PhpParser\\\\Node\\\\Stmt\\\\Interface_ will always evaluate to false.#"
+            count: 1
+            path: src/PhpdocNotNeededRule.php
