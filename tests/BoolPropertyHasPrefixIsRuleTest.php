@@ -4,27 +4,27 @@ declare(strict_types=1);
 
 namespace kr0lik\PHPStanRules\Tests;
 
-use kr0lik\PHPStanRules\AssignVariableInReturnRule;
+use kr0lik\PHPStanRules\BoolPropertyHasPrefixRule;
 use PHPStan\Rules\Rule;
 use PHPStan\Testing\RuleTestCase;
 
 /**
- * @extends RuleTestCase<AssignVariableInReturnRule>
+ * @extends RuleTestCase<BoolPropertyHasPrefixRule>
  *
  * @internal
  */
-class AssignVariableInReturnRuleTest extends RuleTestCase
+class BoolPropertyHasPrefixIsRuleTest extends RuleTestCase
 {
     public function testClassConstant(): void
     {
         $this->analyse(
             [
-                __DIR__.'/TestAsset/AssignVariableInReturnRule/fixture.php',
+                __DIR__.'/TestAsset/BoolPropertyHasPrefixIsRule/fixture.php',
             ],
             [
                 [
-                    'Return with assign: foo',
-                    14,
+                    'Boolean property basketIsId does not have a prefix - is',
+                    9,
                 ],
             ]
         );
@@ -32,6 +32,6 @@ class AssignVariableInReturnRuleTest extends RuleTestCase
 
     protected function getRule(): Rule
     {
-        return new AssignVariableInReturnRule();
+        return new BoolPropertyHasPrefixRule();
     }
 }

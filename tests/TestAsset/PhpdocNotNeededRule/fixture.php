@@ -18,8 +18,6 @@ class A implements C
 
     /**
      * A constructor.
-     *
-     * @param $param
      */
     public function __construct(string $param)
     {
@@ -27,19 +25,17 @@ class A implements C
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
-    public function foo()
+    public function foo(): void
     {
-
     }
 
     /**
      * {@inheritdoc}
      */
-    public function bar()
+    public function bar(): void
     {
-
     }
 }
 
@@ -48,7 +44,6 @@ class A implements C
  */
 trait B
 {
-
 }
 
 /**

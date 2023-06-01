@@ -1,0 +1,5 @@
+parameters:
+  ignoreErrors:
+    -
+      message: '#Missing @throws .+#'
+      path: %rootDir%/../../../src/Migrations/Version*.php

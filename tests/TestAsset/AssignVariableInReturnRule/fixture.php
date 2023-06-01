@@ -20,6 +20,7 @@ function foo(): string
 function bar(): string
 {
     $bar = (string) random_int(0, 1);
+
     return $bar;
 }
 

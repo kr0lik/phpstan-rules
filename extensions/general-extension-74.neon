@@ -1,0 +1,6 @@
+includes:
+  - _general.neon
+
+services:
+  -
+    class: Pepakriz\PHPStanExceptionRules\ThrowsAnnotationReader

@@ -1,0 +1,11 @@
+includes:
+  - %rootDir%/../../../vendor/phpstan/phpstan-symfony/extension.neon
+
+parameters:
+  level: 7
+  paths:
+    - %rootDir%/../../../src
+  symfony:
+    container_xml_path: %rootDir%/../../../var/cache/dev/srcApp_KernelDevDebugContainer.xml
+  excludes_analyse:
+    - %rootDir%/../../../src/Kernel.php

@@ -25,6 +25,7 @@ class PhpdocNotNeededRule implements Rule
         }
 
         $docComment = $node->getDocComment();
+
         if (null === $docComment) {
             return [];
         }

@@ -12,7 +12,6 @@ use PHPStan\Testing\RuleTestCase;
  * @extends RuleTestCase<VariableInConditionRule>
  *
  * @internal
- * @coversNothing
  */
 class VariableInConditionRuleTest extends RuleTestCase
 {
