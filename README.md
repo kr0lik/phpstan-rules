@@ -27,6 +27,6 @@ Copy phpstan.neon:
 
 Choose one in phpstan.neon:
 
-for PHP =7.4: - vendor/kr0lik/phpstan-rules/extensions/general-extension-74.neon
+for PHP >=7.4: - vendor/kr0lik/phpstan-rules/extensions/general-extension-74.neon
 
 for PHP >=8.0: - vendor/kr0lik/phpstan-rules/extensions/general-extension.neon
