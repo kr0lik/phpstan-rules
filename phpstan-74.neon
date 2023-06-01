@@ -1,5 +1,5 @@
 includes:
-  - ./extensions/general-extension.neon
+  - ./extensions/general-extension-74.neon
   - ./extensions/phpunit-extension.neon
 
 parameters:

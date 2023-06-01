@@ -2,22 +2,31 @@
     "name": "kr0lik/phpstan-rules",
     "type": "library",
     "description": "Provides additional rules for phpstan/phpstan.",
+    "require": {
+        "php": ">=7.4",
+        "ergebnis/phpstan-rules": "^0.15.0 || ^1.0",
+        "pepakriz/phpstan-exception-rules": "^0.11.0 || ^0.12.0",
+        "phpstan/phpstan": "^0.12.0 || ^1.0",
+        "phpstan/phpstan-phpunit": "^0.12.0 || ^1.0",
+        "phpstan/phpstan-strict-rules": "^0.12.0 || ^1.0",
+        "phpstan/phpstan-symfony": "^0.12.0 || ^1.0",
+        "slam/phpstan-extensions": "^5.0 || ^6.0",
+        "thecodingmachine/phpstan-strict-rules": "^0.12.0 || ^1.0"
+    },
+    "require-dev": {
+        "kr0lik/php-cs-fixer": "^2.0",
+        "icanhazstring/composer-unused": "^0.8",
+        "phpunit/phpunit": "^9.5"
+    },
     "config": {
         "preferred-install": {
             "*": "dist"
         },
-        "bin-dir": "bin"
-    },
-    "require": {
-        "php": "^7.1",
-        "ext-mbstring": "*",
-        "ergebnis/phpstan-rules": "^0.14.4",
-        "pepakriz/phpstan-exception-rules": "^0.10.1",
-        "phpstan/phpstan": "^0.12.18",
-        "phpstan/phpstan-phpunit": "^0.12.6",
-        "phpstan/phpstan-strict-rules": "^0.12.2",
-        "slam/phpstan-extensions": "^5.0",
-        "thecodingmachine/phpstan-strict-rules": "^0.12.0"
+        "bin-dir": "bin",
+        "sort-packages": true,
+        "allow-plugins": {
+            "icanhazstring/composer-unused": true
+        }
     },
     "autoload": {
         "psr-4": {
@@ -32,14 +41,12 @@
             "tests/"
         ]
     },
-    "require-dev": {
-        "kr0lik/php-cs-fixer": "^1.0",
-        "phpunit/phpunit": "^9.1"
-    },
-    "scripts": {
-        "cs-check": "./bin/php-cs-fixer fix -v --dry-run --stop-on-violation",
-        "cs-fix": "./bin/php-cs-fixer fix",
-        "analyze": "./bin/phpstan analyse",
-        "test": "./bin/phpunit --colors=always"
+    "extra": {
+        "unused": [
+            "ergebnis/phpstan-rules",
+            "pepakriz/phpstan-exception-rules",
+            "slam/phpstan-extensions",
+            "thecodingmachine/phpstan-strict-rules"
+        ]
     }
 }

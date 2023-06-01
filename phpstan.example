@@ -1,3 +1,6 @@
 includes:
-  - vendor/kr0lik/phpstan-rules/general-extension.neon
-#  - vendor/kr0lik/phpstan-rules/phpunit-extension.neon
+  - vendor/gateway/library-phpstan-rules/extensions/general-extension-74.neon # for PHP <=7.4
+  - vendor/gateway/library-phpstan-rules/extensions/general-extension.neon # for PHP >=8.0
+  - vendor/gateway/library-phpstan-rules/extensions/symfony-extension.neon
+  - vendor/gateway/library-phpstan-rules/extensions/symfony-controller-extension.neon
+  - vendor/gateway/library-phpstan-rules/extensions/phpunit-extension.neon

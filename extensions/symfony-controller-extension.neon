@@ -1,0 +1,8 @@
+parameters:
+  ignoreErrors:
+    -
+      message: '#Missing @throws .+ annotation#'
+      path: %rootDir%/../../../src/Controller/*Controller.php
+    -
+      message: '#Missing @throws .+ annotation#'
+      path: %rootDir%/../../../src/Controller/*Action.php

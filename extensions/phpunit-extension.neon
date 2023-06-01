@@ -1,0 +1,21 @@
+includes:
+  - %rootDir%/../../../vendor/phpstan/phpstan-phpunit/extension.neon
+
+parameters:
+  level: 7
+  paths:
+    - %rootDir%/../../../tests
+  ignoreErrors:
+    -
+      message: '#Missing @throws .+#'
+      path: %rootDir%/../../../tests/*Test.php
+    -
+      message: '#.+ is never thrown in the corresponding try block#'
+      path: %rootDir%/../../../tests/*Test.php
+    -
+      message: '#Variable method call on .+#'
+      path: %rootDir%/../../../tests/*Test.php
+    -
+      message: '#Call to an undefined method .+\\MockObject::(expects|method)\(\)\.#'
+      paths:
+        - %rootDir%/../../../tests/*Test.php

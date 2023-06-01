@@ -1,9 +1,0 @@
-includes:
-  - %rootDir%/../../../vendor/phpstan/phpstan-phpunit/extension.neon
-
-parameters:
-    level: 7
-    paths:
-        - %rootDir%/../../../tests
-    autoload_directories:
-        - %rootDir%/../../../tests

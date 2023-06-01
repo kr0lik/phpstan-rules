@@ -24,3 +24,9 @@ to the require section of your `composer.json` file.
 Copy phpstan.neon:
 
     cp ./vendor/kr0lik/phpstan-rules/phpstan.example ./phpstan.neon
+
+Choose one in phpstan.neon:
+
+for PHP =7.4: - vendor/gateway/library-phpstan-rules/extensions/general-extension-74.neon
+
+for PHP >=8.0: - vendor/gateway/library-phpstan-rules/extensions/general-extension.neon

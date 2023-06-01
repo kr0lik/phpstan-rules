@@ -12,7 +12,6 @@ use PHPStan\Testing\RuleTestCase;
  * @extends RuleTestCase<PhpdocNotNeededRule>
  *
  * @internal
- * @coversNothing
  */
 class PhpdocNotNeededRuleTest extends RuleTestCase
 {
@@ -32,20 +31,20 @@ class PhpdocNotNeededRuleTest extends RuleTestCase
                     19,
                 ],
                 [
-                    'Phpdoc has not needed comment `@inheritDoc`.',
-                    29,
+                    'Phpdoc has not needed comment `{@inheritDoc}`.',
+                    27,
                 ],
                 [
                     'Phpdoc has not needed comment `{@inheritdoc}`.',
-                    37,
+                    34,
                 ],
                 [
                     'Phpdoc has not needed comment `Trait B`.',
-                    46,
+                    42,
                 ],
                 [
                     'Phpdoc has not needed comment `Interface C`.',
-                    54,
+                    49,
                 ],
             ]
         );
