@@ -1,12 +1,13 @@
 includes:
-	- %rootDir%/../../../vendor/ergebnis/phpstan-rules/rules.neon
-    - %rootDir%/../../../vendor/phpstan/phpstan-strict-rules/rules.neon
-    - %rootDir%/../../../vendor/pepakriz/phpstan-exception-rules/extension.neon
-    - %rootDir%/../../../vendor/slam/phpstan-extensions/conf/slam-rules.neon
-    - %rootDir%/../../../vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
-    - %rootDir%/../../../vendor/phpstan/phpstan/conf/bleedingEdge.neon
-    - %rootDir%/../../../vendor/shipmonk/phpstan-rules/rules.neon
-    - %rootDir%/../../../vendor/soyhuce/phpstan-extension/extension.neon
+      - %rootDir%/../../../vendor/ergebnis/phpstan-rules/rules.neon
+      - %rootDir%/../../../vendor/phpstan/phpstan-strict-rules/rules.neon
+      - %rootDir%/../../../vendor/pepakriz/phpstan-exception-rules/extension.neon
+      - %rootDir%/../../../vendor/slam/phpstan-extensions/conf/slam-rules.neon
+      - %rootDir%/../../../vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
+      - %rootDir%/../../../vendor/phpstan/phpstan/conf/bleedingEdge.neon
+      - %rootDir%/../../../vendor/shipmonk/phpstan-rules/rules.neon
+      - %rootDir%/../../../vendor/soyhuce/phpstan-extension/extension.neon
+
 services:
       -
         class: kr0lik\PHPStan\Rules\VariableInConditionRule
