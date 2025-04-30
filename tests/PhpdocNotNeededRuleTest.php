@@ -36,15 +36,15 @@ class PhpdocNotNeededRuleTest extends RuleTestCase
                 ],
                 [
                     'Phpdoc has not needed comment `{@inheritdoc}`.',
-                    34,
+                    32,
                 ],
                 [
                     'Phpdoc has not needed comment `Trait B`.',
-                    42,
+                    38,
                 ],
                 [
                     'Phpdoc has not needed comment `Interface C`.',
-                    49,
+                    43,
                 ],
             ]
         );

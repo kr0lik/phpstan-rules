@@ -28,9 +28,9 @@ Copy phpstan.neon:
 Develop:
 
 ```bash
-docker pull davidzapata/php-composer-alpine:8.2
-docker run -v .:/var/www --rm davidzapata/php-composer-alpine:8.2 composer install
-docker run -v .:/var/www --rm davidzapata/php-composer-alpine:8.2 vendor/bin/pint
-docker run -v .:/var/www --rm davidzapata/php-composer-alpine:8.2 vendor/bin/phpstan analyse
-docker run -v .:/var/www --rm davidzapata/php-composer-alpine:8.2 vendor/bin/phpunit tests
+docker pull composer:2.2.20
+docker run -v .:/app --rm composer:2.2.20 composer install
+docker run -v .:/app --rm composer:2.2.20 vendor/bin/php-cs-fixer fix
+docker run -v .:/app --rm composer:2.2.20 vendor/bin/phpstan analyse
+docker run -v .:/app --rm composer:2.2.20 vendor/bin/phpunit tests
 ```

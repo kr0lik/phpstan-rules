@@ -20,6 +20,10 @@ parameters:
           paths:
             - src/*Rule.php
         -
+          message: "#should return list<PHPStan\\\\Rules\\\\IdentifierRuleError> but returns array#"
+          paths:
+            - src/*Rule.php
+        -
           message: "#Instanceof between .+ will always evaluate to false.#"
           path: src/PhpdocNotNeededRule.php
         -

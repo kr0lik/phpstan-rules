@@ -19,7 +19,7 @@ final class BoolPropertyHasPrefixRule implements Rule
 
     public function processNode(Node $node, Scope $scope): array
     {
-        $isBooleanProperty = !$node instanceof Node\Stmt\Property
+        $isBooleanProperty = !$node instanceof Property
             || !$node->type instanceof Node\Identifier
             || 'bool' !== $node->type->name;
 

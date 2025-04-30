@@ -3,7 +3,7 @@
     "type": "library",
     "description": "Provides additional rules for phpstan/phpstan.",
     "require": {
-        "php": "^8.2",
+        "php": "^8.0",
         "ergebnis/phpstan-rules": "^2.0",
         "larastan/larastan": "^2.0",
         "pepakriz/phpstan-exception-rules": "^0.12.0",

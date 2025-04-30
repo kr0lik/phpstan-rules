@@ -16,7 +16,6 @@ use PHPStan\Reflection\MissingPropertyFromReflectionException;
 use PHPStan\Rules\Rule;
 use PHPStan\ShouldNotHappenException;
 use PHPStan\Type\MixedType;
-use PHPStan\Type\NullType;
 use PHPStan\Type\Type;
 use PHPStan\Type\UnionType;
 
@@ -41,6 +40,10 @@ final class ConformityNullableVariableAndMethodsRule implements Rule
             return [];
         }
 
+        if (null === $scope->getClassReflection()) {
+            return [];
+        }
+
         if ('get' === substr($node->name->name, 0, 3)) {
             return $this->checkGetter($node->getStmts(), $node->getReturnType(), $scope->getClassReflection());
         }
@@ -53,21 +56,25 @@ final class ConformityNullableVariableAndMethodsRule implements Rule
     }
 
     /**
-     * @param Stmt[] $stmts
+     * @param Stmt[]|null $stmts
      *
-     * @return array<mixed>
+     * @return string[]
      */
     private function checkGetter(?array $stmts, ?Node $returnType, ClassReflection $classReflection): array
     {
+        if (null === $stmts) {
+            return [];
+        }
+
         $propertyName = null;
 
         foreach ($stmts as $stmt) {
-            $isPropertyNameExists = $stmt instanceof Return_
-                && $stmt->expr instanceof Expr\PropertyFetch
-                && $stmt->expr->name instanceof Node\Identifier;
-
-            if ($isPropertyNameExists) {
-                $propertyName = $stmt->expr->name->name ?? null;
+            if ($stmt instanceof Return_) {
+                if ($stmt->expr instanceof Expr\PropertyFetch) {
+                    if ($stmt->expr->name instanceof Node\Identifier) {
+                        $propertyName = $stmt->expr->name->name;
+                    }
+                }
             }
         }
 
@@ -104,16 +111,19 @@ final class ConformityNullableVariableAndMethodsRule implements Rule
     private function checkSetter(array $params, ClassReflection $classReflection): array
     {
         foreach ($params as $param) {
-            $name = $param->var->name ?? null;
-            $isPropertyNameExists = !$param->var instanceof Expr\Variable || !is_string($name);
+            if (!$param->var instanceof Expr\Variable) {
+                return [];
+            }
 
-            if ($isPropertyNameExists) {
+            $name = $param->var->name;
+
+            if (!is_string($name)) {
                 return [];
             }
 
             try {
                 $property = $classReflection->getNativeProperty($name);
-            } catch (MissingPropertyFromReflectionException $e) {
+            } catch (MissingPropertyFromReflectionException) {
                 return [];
             }
 
@@ -181,7 +191,7 @@ final class ConformityNullableVariableAndMethodsRule implements Rule
         $types = $propertyType->getTypes();
 
         foreach ($types as $type) {
-            if ($type instanceof NullType) {
+            if ($type->isNull()->yes()) {
                 return true;
             }
         }

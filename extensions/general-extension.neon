@@ -6,23 +6,22 @@ includes:
       - %rootDir%/../../../vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
       - %rootDir%/../../../vendor/phpstan/phpstan/conf/bleedingEdge.neon
       - %rootDir%/../../../vendor/shipmonk/phpstan-rules/rules.neon
-      - %rootDir%/../../../vendor/soyhuce/phpstan-extension/extension.neon
 
 services:
       -
-        class: kr0lik\PHPStan\Rules\VariableInConditionRule
+        class: kr0lik\PHPStanRules\VariableInConditionRule
         tags: [phpstan.rules.rule]
       -
-        class: kr0lik\PHPStan\Rules\ConformityNullableVariableAndMethodsRule
+        class: kr0lik\PHPStanRules\ConformityNullableVariableAndMethodsRule
         tags: [phpstan.rules.rule]
       -
-        class: kr0lik\PHPStan\Rules\BoolPropertyHasPrefixRule
+        class: kr0lik\PHPStanRules\BoolPropertyHasPrefixRule
         tags: [phpstan.rules.rule]
       -
-        class: kr0lik\PHPStan\Rules\PhpdocNotNeededRule
+        class: kr0lik\PHPStanRules\PhpdocNotNeededRule
         tags: [phpstan.rules.rule]
       -
-        class: kr0lik\PHPStan\Rules\AssignVariableInReturnRule
+        class: kr0lik\PHPStanRules\AssignVariableInReturnRule
         tags: [phpstan.rules.rule]
 parameters:
     checkTooWideReturnTypesInProtectedAndPublicMethods: true
@@ -56,3 +55,16 @@ parameters:
              enabled: false
     featureToggles:
          varTagType: false
+    ergebnis:
+         noExtends:
+             enabled: false
+         noNullableReturnTypeDeclaration:
+             enabled: false
+         finalInAbstractClass:
+         	 enabled: false
+         final:
+         	 enabled: false
+         noParameterWithNullableTypeDeclaration:
+             enabled: false
+         noParameterWithNullDefaultValue:
+         	 enabled: false

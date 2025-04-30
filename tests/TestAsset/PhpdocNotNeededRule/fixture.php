@@ -27,24 +27,18 @@ class A implements C
     /**
      * {@inheritDoc}
      */
-    public function foo(): void
-    {
-    }
+    public function foo(): void {}
 
     /**
      * {@inheritdoc}
      */
-    public function bar(): void
-    {
-    }
+    public function bar(): void {}
 }
 
 /**
  *  Trait B.
  */
-trait B
-{
-}
+trait B {}
 
 /**
  *  Interface C.

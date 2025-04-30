@@ -1,5 +1,6 @@
 includes:
     - %rootDir%/../../../vendor/larastan/larastan/extension.neon
+    - %rootDir%/../../../vendor/soyhuce/phpstan-extension/extension.neon
 
 parameters:
     checkModelProperties: true
