@@ -1,8 +1,57 @@
 includes:
-  - _general.neon
-
+	- %rootDir%/../../../vendor/ergebnis/phpstan-rules/rules.neon
+    - %rootDir%/../../../vendor/phpstan/phpstan-strict-rules/rules.neon
+    - %rootDir%/../../../vendor/pepakriz/phpstan-exception-rules/extension.neon
+    - %rootDir%/../../../vendor/slam/phpstan-extensions/conf/slam-rules.neon
+    - %rootDir%/../../../vendor/thecodingmachine/phpstan-strict-rules/phpstan-strict-rules.neon
+    - %rootDir%/../../../vendor/phpstan/phpstan/conf/bleedingEdge.neon
+    - %rootDir%/../../../vendor/shipmonk/phpstan-rules/rules.neon
+    - %rootDir%/../../../vendor/soyhuce/phpstan-extension/extension.neon
 services:
-  -
-    class: Pepakriz\PHPStanExceptionRules\ThrowsAnnotationReader
-    arguments:
-      phpParser: @defaultAnalysisParser
+      -
+        class: kr0lik\PHPStan\Rules\VariableInConditionRule
+        tags: [phpstan.rules.rule]
+      -
+        class: kr0lik\PHPStan\Rules\ConformityNullableVariableAndMethodsRule
+        tags: [phpstan.rules.rule]
+      -
+        class: kr0lik\PHPStan\Rules\BoolPropertyHasPrefixRule
+        tags: [phpstan.rules.rule]
+      -
+        class: kr0lik\PHPStan\Rules\PhpdocNotNeededRule
+        tags: [phpstan.rules.rule]
+      -
+        class: kr0lik\PHPStan\Rules\AssignVariableInReturnRule
+        tags: [phpstan.rules.rule]
+parameters:
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    checkUninitializedProperties: true
+    checkDynamicProperties: true
+    checkBenevolentUnionTypes: true
+    reportWrongPhpDocTypeInVarTag: true
+    reportAnyTypeWideningInVarTag: true
+    checkMissingCallableSignature: true
+    exceptionRules:
+        reportUnusedCatchesOfUncheckedExceptions: true
+        reportUnusedCheckedThrowsInSubtypes: true
+        reportCheckedThrowsInGlobalScope: true
+        uncheckedExceptions:
+            - LogicException
+            - RuntimeException
+    shipmonkRules:
+         forbidVariableTypeOverwriting:
+             enabled: false
+         forbidUnusedMatchResult:
+             enabled: false
+         forbidCheckedExceptionInCallable:
+             enabled: false
+         forbidCheckedExceptionInYieldingMethod:
+             enabled: false
+         enforceReadonlyPublicProperty:
+             enabled: false
+         enforceListReturn:
+             enabled: false
+         forbidMatchDefaultArmForEnums:
+             enabled: false
+    featureToggles:
+         varTagType: false

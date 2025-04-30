@@ -3,26 +3,27 @@
     "type": "library",
     "description": "Provides additional rules for phpstan/phpstan.",
     "require": {
-        "php": ">=7.4",
-        "ergebnis/phpstan-rules": "^0.15.0 || ^1.0",
-        "pepakriz/phpstan-exception-rules": "^0.11.0 || ^0.12.0",
-        "phpstan/phpstan": "^0.12.0 || ^1.0",
-        "phpstan/phpstan-phpunit": "^0.12.0 || ^1.0",
-        "phpstan/phpstan-strict-rules": "^0.12.0 || ^1.0",
-        "phpstan/phpstan-symfony": "^0.12.0 || ^1.0",
-        "slam/phpstan-extensions": "^5.0 || ^6.0",
-        "thecodingmachine/phpstan-strict-rules": "^0.12.0 || ^1.0"
+        "php": "^8.2",
+        "ergebnis/phpstan-rules": "^2.0",
+        "larastan/larastan": "^2.0",
+        "pepakriz/phpstan-exception-rules": "^0.12.0",
+        "phpstan/phpstan": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpstan/phpstan-strict-rules": "^1.0",
+        "phpstan/phpstan-symfony": "^1.0",
+        "shipmonk/phpstan-rules": "^3.0",
+        "slam/phpstan-extensions": "^6.0",
+        "soyhuce/phpstan-extension": "^1.0",
+        "thecodingmachine/phpstan-strict-rules": "^1.0"
     },
     "require-dev": {
         "kr0lik/php-cs-fixer": "^2.0",
-        "icanhazstring/composer-unused": "^0.8",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.0"
     },
     "config": {
         "preferred-install": {
             "*": "dist"
         },
-        "bin-dir": "bin",
         "sort-packages": true,
         "allow-plugins": {
             "icanhazstring/composer-unused": true
@@ -39,14 +40,6 @@
         },
         "classmap": [
             "tests/"
-        ]
-    },
-    "extra": {
-        "unused": [
-            "ergebnis/phpstan-rules",
-            "pepakriz/phpstan-exception-rules",
-            "slam/phpstan-extensions",
-            "thecodingmachine/phpstan-strict-rules"
         ]
     }
 }

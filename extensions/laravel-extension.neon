@@ -1,0 +1,8 @@
+includes:
+    - %rootDir%/../../../vendor/larastan/larastan/extension.neon
+
+parameters:
+    checkModelProperties: true
+    checkOctaneCompatibility: true
+    noEnvCallsOutsideOfConfig: true
+    checkModelAppends: true

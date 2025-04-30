@@ -25,8 +25,12 @@ Copy phpstan.neon:
 
     cp ./vendor/kr0lik/phpstan-rules/phpstan.example ./phpstan.neon
 
-Choose one in phpstan.neon:
+Develop:
 
-for PHP >=7.4: - vendor/kr0lik/phpstan-rules/extensions/general-extension-74.neon
-
-for PHP >=8.0: - vendor/kr0lik/phpstan-rules/extensions/general-extension.neon
+```bash
+docker pull davidzapata/php-composer-alpine:8.2
+docker run -v .:/var/www --rm davidzapata/php-composer-alpine:8.2 composer install
+docker run -v .:/var/www --rm davidzapata/php-composer-alpine:8.2 vendor/bin/pint
+docker run -v .:/var/www --rm davidzapata/php-composer-alpine:8.2 vendor/bin/phpstan analyse
+docker run -v .:/var/www --rm davidzapata/php-composer-alpine:8.2 vendor/bin/phpunit tests
+```
