@@ -1,6 +1,7 @@
 {
     "name": "kr0lik/phpstan-rules",
     "type": "library",
+    "license": "MIT",
     "description": "Provides additional rules for phpstan/phpstan.",
     "require": {
         "php": "^8.0",
