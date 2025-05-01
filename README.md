@@ -14,7 +14,7 @@ Copy phpstan.neon:
 
     cp ./vendor/kr0lik/phpstan-rules/phpstan.example ./phpstan.neon
 
-Edit inclides in phpstan.neon
+Edit includes in phpstan.neon
 
 Develop:
 
